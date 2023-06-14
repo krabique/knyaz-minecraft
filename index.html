@@ -1,0 +1,196 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-image: url('background.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+
+      .buttonAnswer {
+        background-image: url('button.jpg');
+        min-width: 40em;
+        min-height: 5em;
+        max-width: 40em;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        margin: 0.5em;
+        padding: 1em;
+      }
+
+      .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+
+      .question {
+        border: none;
+        margin-bottom: 3em;
+      }
+
+      #score, #lives {
+        color: red;
+        font-size: xx-large;
+      }
+
+      .finalScore {
+        text-align: center;
+        color: red;
+        font-size: xxx-large;
+      }
+
+      .lives {
+        width: 2em;
+        height: 2em;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <script>
+      const QUESTIONS = [
+        {
+          question: 'Как зовут главного героя?',
+          answers: ['Стив', 'Хуив', 'Князь', 'Бомж'],
+          rightAnswer: 'Стив'
+        },
+        {
+          question: 'Князь лох?',
+          answers: ['Лох', 'Пидор', 'Нет', 'Друзей'],
+          rightAnswer: 'Лох'
+        },
+        {
+          question: 'Чем болеет хмеля?',
+          answers: ['Неизвестной болезнью', 'Алкоголизмом', 'Долбоебизмом', 'Проблемы в его голове'],
+          rightAnswer: 'Проблемы в его голове'
+        },
+        {
+          question: 'Макс ....',
+          answers: ['Корж', 'Пряник', 'Кринж'],
+          rightAnswer: 'Кринж'
+        }
+      ];
+
+      let score = 0;
+      let lives = 3;
+      let currentQuestionIndex = 0;
+
+      function newGame() {
+        updateScoreDisplay();
+        updateLivesDisplay();
+
+        const answersNode = document.getElementById('answers');
+        clearNode(answersNode);
+
+        if (QUESTIONS.length == currentQuestionIndex || lives == 0) {
+          return endGame(answersNode);
+        }
+
+        const questionObject = QUESTIONS[currentQuestionIndex];
+        addQuestion(questionObject, answersNode);
+        addAnswers(questionObject, answersNode);
+      }
+
+      function resetGame() {
+        score = 0;
+        lives = 3;
+        currentQuestionIndex = 0;
+
+        newGame();
+      }
+
+      function endGame(answersNode) {
+        const finalScoreNode = document.createElement('div')
+        finalScoreNode.setAttribute('class', 'finalScore');
+        finalScoreNode.innerHTML = `Твой счёт: ${score}`
+        answersNode.appendChild(finalScoreNode)
+
+        const playAgainButton = document.createElement('button')
+        playAgainButton.setAttribute('class', 'buttonAnswer');
+        playAgainButton.setAttribute('onClick', 'resetGame()');
+        playAgainButton.innerHTML = `Попробовать ещё раз!`
+        answersNode.appendChild(playAgainButton)
+      }
+
+      function addQuestion(questionObject, answersNode) {
+        const questionNode = document.createElement('button');
+        questionNode.setAttribute('class', 'buttonAnswer question');
+        questionNode.innerHTML = questionObject.question;
+        answersNode.appendChild(questionNode);
+      }
+
+      function addAnswers(questionObject, answersNode) {
+        for (const answer of questionObject.answers) {
+          const buttonNode = document.createElement('button');
+          buttonNode.setAttribute('class', 'buttonAnswer answer');        
+          buttonNode.onclick = () => { checkAnswer(answer, buttonNode) };
+          buttonNode.innerHTML = answer;
+          answersNode.appendChild(buttonNode);
+        }
+      }
+
+      function checkAnswer(answer, buttonNode) {
+        if (answer == QUESTIONS[currentQuestionIndex].rightAnswer) {
+          correctAnswer(buttonNode);
+        } else {
+          wrongAnswer(buttonNode);
+        }
+
+        for (button of document.getElementsByClassName('answer')) {
+          button.onclick = null;
+        }
+        
+        currentQuestionIndex += 1;        
+        setTimeout(newGame, 2000);
+      }
+
+      function updateScoreDisplay() {
+        document.getElementById('score').innerHTML = `Счёт: ${score}`;
+      }
+
+      function updateLivesDisplay() {
+        livesNode = document.getElementById('lives');
+        clearNode(livesNode);
+        
+        for (let i = 0; i < lives; i++) {
+          const lifeElement = document.createElement('img');
+          lifeElement.src = 'heart.png';
+          lifeElement.setAttribute('class', 'lives');
+          livesNode.appendChild(lifeElement);
+        }  
+      }
+
+      function correctAnswer(buttonNode) {
+        score += 200;
+        buttonNode.style.borderColor = 'green';
+        buttonNode.style.borderWidth  = 'thick'
+      }
+
+      function wrongAnswer(buttonNode) {
+        lives -= 1;
+        buttonNode.style.borderColor = 'red';
+        buttonNode.style.borderWidth  = 'thick'
+      }
+
+      function clearNode(node) { 
+        while(node.firstChild && node.removeChild(node.firstChild));
+      }
+    </script>
+
+    <div id='lives'></div>
+    <div id='score'></div>
+    <div id='game' class='center'>    
+      <div id='answers'>
+        <button class='buttonAnswer' onClick='newGame()'>Начать игру!</button>
+      </div>
+    </div>
+  
+  </body>
+</html>
