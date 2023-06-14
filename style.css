@@ -9,10 +9,12 @@ body {
   background-attachment: fixed;
   background-size: cover;
   font-family: 'minecraft';
+  text-shadow: 2px 2px 3px black;
 }
 
 button {
   font-family: 'minecraft';
+  font-size: medium;
 }
 
 .buttonAnswer {
