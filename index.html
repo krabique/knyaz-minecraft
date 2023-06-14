@@ -53,8 +53,16 @@
   </head>
 
   <body>
-
     <script>
+      const scoreDescriptions = {
+        '0': 'Ты вообще играл в Майнкрафт? Мне кажется, что нет. Быстрее исправь это недоразумение!',
+        '400': 'Ты обычная домашняя овечка, очень спокойная и добрая но беззащитная, держись поближе к Стиву или к деревне где тебя будет охранять железный Голем!',
+        '1000': 'Ты обычный деревенский житель, у тебя есть возможность стать Кузнецом или Фермером, дружи со Стивом и он тебе поможет!',
+        '2000': 'Ты Железный Голем, сильный, спокойный и устрашающий! Твоя задача охранять деревню и прилегающие территории от недругов, так держать!',
+        '3000': 'Ты Эндермен, пришелец из другого измерения, который уважает своё личное пространство и любит играться с блоками!',
+        '4000': 'Ты Стив, главный герой и самый сильный персонаж в мире Майнкрафт, ведь тебе всё по плечу!'
+      };
+
       const QUESTIONS = [
         {
           question: 'Как зовут главного героя?',
@@ -109,7 +117,7 @@
       function endGame(answersNode) {
         const finalScoreNode = document.createElement('div')
         finalScoreNode.setAttribute('class', 'finalScore');
-        finalScoreNode.innerHTML = `Твой счёт: ${score}`
+        finalScoreNode.innerHTML = `Твой счёт: ${score}. ${scoreDescription(score)}`
         answersNode.appendChild(finalScoreNode)
 
         const playAgainButton = document.createElement('button')
@@ -117,6 +125,15 @@
         playAgainButton.setAttribute('onClick', 'resetGame()');
         playAgainButton.innerHTML = `Попробовать ещё раз!`
         answersNode.appendChild(playAgainButton)
+      }
+
+      function scoreDescription(score) {
+        const scoreThresholds = Object.keys(scoreDescriptions).map((i) => parseInt(i));
+        for (let i = 0; i < scoreThresholds.length; i++) {
+          if (scoreThresholds[i] <= score && (scoreThresholds[i + 1] > score || scoreThresholds[i + 1] == undefined)) {
+            return scoreDescriptions[scoreThresholds[i]];
+          }
+        }
       }
 
       function addQuestion(questionObject, answersNode) {
@@ -168,7 +185,7 @@
       }
 
       function correctAnswer(buttonNode) {
-        score += 200;
+        score += 400;
         buttonNode.style.borderColor = 'green';
         buttonNode.style.borderWidth  = 'thick'
       }
