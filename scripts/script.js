@@ -5,7 +5,9 @@ let currentQuestionIndex = 0;
 const audioMusic = new Audio('assets/sounds/music.mp4');
 const correctAnswerSound = new Audio('assets/sounds/correct_answer.mp3');
 const wrongAnswerSound = new Audio('assets/sounds/wrong_answer.mp3');
-[audioMusic, correctAnswerSound, wrongAnswerSound].forEach((aSound) => aSound.volume = 0.3 );
+audioMusic.volume = 0.3;
+wrongAnswerSound.volume = 1.0;
+correctAnswerSound.volume = 0.5;
 
 function music(toggle) {
   soundNode = document.getElementById('sound');
