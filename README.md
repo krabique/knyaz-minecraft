@@ -3,12 +3,5 @@
 ## Live
 [https://krabique.github.io/knyaz-minecraft/](https://krabique.github.io/knyaz-minecraft/)
 
-## TODO
-- добавить бекграунды в конфиг
-- копирайт дисклеймер добавить в начало
-- добавить музычку с возможностью отключить/включить
-- переверстать под адаптив мобилки
-- прикрутить яндукс сдк и рекламку
-
-## TODO later
-- добавить в конце ссылку типа "оставь коммент хороший чел вася"
+## Trello
+[https://trello.com/c/FAaacHzY/1-todo-initial](https://trello.com/c/FAaacHzY/1-todo-initial)
