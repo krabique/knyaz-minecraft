@@ -14,8 +14,14 @@ function newGame() {
   }
 
   const questionObject = QUESTIONS[currentQuestionIndex];
+  updateBackground(questionObject);
   addQuestion(questionObject, answersNode);
   addAnswers(questionObject, answersNode);
+}
+
+function updateBackground(questionObject) {
+  const background = questionObject.background || 'default_background.jpg'
+  document.body.style.backgroundImage = `url('assets/backgrounds/${background}')`;
 }
 
 function resetGame() {

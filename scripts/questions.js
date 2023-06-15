@@ -16,7 +16,8 @@ const QUESTIONS = [
   {
     "question": "Князь лох?",
     "answers": ["Лох", "Пидор", "Нет", "Друзей"],
-    "rightAnswer": "Лох"
+    "rightAnswer": "Лох",
+    "background": "cool_background.jpg"
   },
   {
     "question": "Чем болеет хмеля?",
