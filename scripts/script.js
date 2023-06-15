@@ -90,7 +90,7 @@ function updateLivesDisplay() {
   
   for (let i = 0; i < lives; i++) {
     const lifeElement = document.createElement('img');
-    lifeElement.src = 'heart.png';
+    lifeElement.src = 'assets/heart.png';
     lifeElement.setAttribute('class', 'lives');
     livesNode.appendChild(lifeElement);
   }  
