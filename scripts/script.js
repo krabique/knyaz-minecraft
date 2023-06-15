@@ -9,6 +9,15 @@ audioMusic.volume = 0.3;
 wrongAnswerSound.volume = 1.0;
 correctAnswerSound.volume = 0.5;
 
+let playMusic = true;
+window.addEventListener("blur", () => music(false));
+window.addEventListener("focus", () => music(playMusic));
+
+function userToggleMusic() {
+  playMusic = !playMusic;
+  music(playMusic);
+}
+
 function music(toggle) {
   soundNode = document.getElementById('sound');
   clearNode(soundNode);
@@ -16,13 +25,13 @@ function music(toggle) {
   if (toggle) {
     soundOnIcon = document.createElement('img');
     soundOnIcon.src = 'assets/sound_on.png';
-    soundOnIcon.onclick = () => { music(false) };
+    soundOnIcon.onclick = () => { userToggleMusic() };
     soundNode.appendChild(soundOnIcon);
     audioMusic.play();
   } else {
     soundOffIcon = document.createElement('img');
     soundOffIcon.src = 'assets/sound_off.png';
-    soundOffIcon.onclick = () => { music(true) };
+    soundOffIcon.onclick = () => { userToggleMusic() };
     soundNode.appendChild(soundOffIcon);
     audioMusic.pause();
   }
