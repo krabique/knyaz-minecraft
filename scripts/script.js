@@ -49,7 +49,9 @@ function scoreDescription(score) {
   const scoreThresholds = Object.keys(scoreDescriptions).map((i) => parseInt(i));
   for (let i = 0; i < scoreThresholds.length; i++) {
     if (scoreThresholds[i] <= score && (scoreThresholds[i + 1] > score || scoreThresholds[i + 1] == undefined)) {
-      return scoreDescriptions[scoreThresholds[i]];
+      descriptionObject = scoreDescriptions[scoreThresholds[i]]
+      updateBackground(descriptionObject)
+      return descriptionObject.message;
     }
   }
 }
