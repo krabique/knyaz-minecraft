@@ -10,6 +10,7 @@ body {
   background-size: cover;
   font-family: 'minecraft';
   text-shadow: 2px 2px 3px black;
+  color: red;
 }
 
 button {
