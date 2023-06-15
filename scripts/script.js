@@ -105,7 +105,7 @@ function updateLivesDisplay() {
 }
 
 function correctAnswer(buttonNode) {
-  score += 400;
+  score += questionScoreValue;
   buttonNode.style.borderColor = 'green';
   buttonNode.style.borderWidth  = 'thick'
 }
