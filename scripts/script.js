@@ -3,7 +3,9 @@ let lives = 3;
 let currentQuestionIndex = 0;
 
 const audioMusic = new Audio('assets/sounds/music.mp4');
-audioMusic.volume = 0.3;
+const correctAnswerSound = new Audio('assets/sounds/correct_answer.mp3');
+const wrongAnswerSound = new Audio('assets/sounds/wrong_answer.mp3');
+[audioMusic, correctAnswerSound, wrongAnswerSound].forEach((aSound) => aSound.volume = 0.3 );
 
 function music(toggle) {
   soundNode = document.getElementById('sound');
@@ -131,12 +133,14 @@ function updateLivesDisplay() {
 }
 
 function correctAnswer(buttonNode) {
+  correctAnswerSound.play();
   score += questionScoreValue;
   buttonNode.style.borderColor = 'green';
   buttonNode.style.borderWidth  = 'thick'
 }
 
 function wrongAnswer(buttonNode) {
+  wrongAnswerSound.play();
   lives -= 1;
   buttonNode.style.borderColor = 'red';
   buttonNode.style.borderWidth  = 'thick'
