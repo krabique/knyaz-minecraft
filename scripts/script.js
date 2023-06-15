@@ -2,7 +2,33 @@ let score = 0;
 let lives = 3;
 let currentQuestionIndex = 0;
 
-function newGame() {
+const audioMusic = new Audio('assets/sounds/music.mp4');
+audioMusic.volume = 0.3;
+
+function music(toggle) {
+  soundNode = document.getElementById('sound');
+  clearNode(soundNode);
+
+  if (toggle) {
+    soundOnIcon = document.createElement('img');
+    soundOnIcon.src = 'assets/sound_on.png';
+    soundOnIcon.onclick = () => { music(false) };
+    soundNode.appendChild(soundOnIcon);
+    audioMusic.play();
+  } else {
+    soundOffIcon = document.createElement('img');
+    soundOffIcon.src = 'assets/sound_off.png';
+    soundOffIcon.onclick = () => { music(true) };
+    soundNode.appendChild(soundOffIcon);
+    audioMusic.pause();
+  }
+}
+
+function newGame(initialStart) {
+  if (initialStart) {    
+    music(true);
+  }
+
   updateScoreDisplay();
   updateLivesDisplay();
 

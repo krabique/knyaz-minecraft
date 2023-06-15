@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width" />
     <title>Тест кто ты из Майнкрафт</title>
     <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/questions.js"></script>
-    <script src="scripts/script.js"></script>
   </head>
 
   <body>
     <div id='lives'></div>
     <div id='score'></div>
+    <div id='sound'></div>
     <div id='game' class='center'>    
       <div id='answers'>
         <h2>Кто ты из Minecraft? Крутой тест!</h2>
-        <button class='buttonAnswer' onClick='newGame()'>Начать игру!</button>
+        <button class='buttonAnswer' onClick='newGame(true)'>Начать игру!</button>
         <h2>
           Отказ от ответственности. В соответствии с требованиями авторского правав, обращаем ваше внимание, 
           что это НЕОФИЦИАЛЬНЫЙ ПРОДУКТ MINECRAFT. НЕ УТВЕРЖДЕНО MOJANG И НЕ СВЯЗАНО С MOJANG. Продукт был реализован 
@@ -24,5 +23,7 @@
       </div>
     </div>
   
+    <script src="scripts/questions.js"></script>
+    <script src="scripts/script.js"></script>
   </body>
 </html>
