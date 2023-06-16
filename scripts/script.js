@@ -105,7 +105,7 @@ function scoreDescription(score) {
 
 function addQuestion(questionObject, answersNode) {
   const questionNodeWrapper = document.createElement('div');
-  questionNodeWrapper.setAttribute('class', 'col-md-12 text-center py-3');
+  questionNodeWrapper.setAttribute('class', 'col-md-12 text-center pb-3');
   const questionNode = document.createElement('button');
   questionNode.setAttribute('class', 'buttonAnswer question');
   questionNode.innerHTML = questionObject.question;
