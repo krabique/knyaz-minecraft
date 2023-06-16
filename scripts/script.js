@@ -25,12 +25,14 @@ function music(toggle) {
 
   if (toggle) {
     soundOnIcon = document.createElement('img');
+    soundOnIcon.setAttribute('class', 'soundImage');
     soundOnIcon.src = 'assets/sound_on.png';
     soundOnIcon.onclick = () => { userToggleMusic() };
     soundNode.appendChild(soundOnIcon);
     audioMusic.play();
   } else {
     soundOffIcon = document.createElement('img');
+    soundOffIcon.setAttribute('class', 'soundImage');
     soundOffIcon.src = 'assets/sound_off.png';
     soundOffIcon.onclick = () => { userToggleMusic() };
     soundNode.appendChild(soundOffIcon);
@@ -39,7 +41,7 @@ function music(toggle) {
 }
 
 function newGame(initialStart) {
-  if (initialStart) {    
+  if (initialStart) {
     music(true);
   }
 
@@ -73,16 +75,21 @@ function resetGame() {
 }
 
 function endGame(answersNode) {
-  const finalScoreNode = document.createElement('div')
-  finalScoreNode.setAttribute('class', 'finalScore');
+  const finalScoreNode = document.createElement('div');
+  finalScoreNode.setAttribute('class', 'finalScore text-center');
   finalScoreNode.innerHTML = `Твой счёт: ${score}. ${scoreDescription(score)}`
-  answersNode.appendChild(finalScoreNode)
 
-  const playAgainButton = document.createElement('button')
+  const playAgainButtonWrapper = document.createElement('div');
+  playAgainButtonWrapper.setAttribute('class', 'col-12');
+
+  const playAgainButton = document.createElement('button');
   playAgainButton.setAttribute('class', 'buttonAnswer');
   playAgainButton.setAttribute('onClick', 'resetGame()');
-  playAgainButton.innerHTML = `Попробовать ещё раз!`
-  answersNode.appendChild(playAgainButton)
+  playAgainButton.innerHTML = `Попробовать ещё раз!`;
+  playAgainButtonWrapper.appendChild(playAgainButton);
+  finalScoreNode.appendChild(playAgainButtonWrapper);
+
+  answersNode.appendChild(finalScoreNode);
 }
 
 function scoreDescription(score) {
@@ -97,19 +104,25 @@ function scoreDescription(score) {
 }
 
 function addQuestion(questionObject, answersNode) {
+  const questionNodeWrapper = document.createElement('div');
+  questionNodeWrapper.setAttribute('class', 'col-md-12 text-center py-3');
   const questionNode = document.createElement('button');
   questionNode.setAttribute('class', 'buttonAnswer question');
   questionNode.innerHTML = questionObject.question;
-  answersNode.appendChild(questionNode);
+  questionNodeWrapper.appendChild(questionNode);
+  answersNode.appendChild(questionNodeWrapper);
 }
 
 function addAnswers(questionObject, answersNode) {
   for (const answer of questionObject.answers) {
+    const questionNodeWrapper = document.createElement('div');
+    questionNodeWrapper.setAttribute('class', 'col-md-12 text-center');
     const buttonNode = document.createElement('button');
-    buttonNode.setAttribute('class', 'buttonAnswer answer');        
+    buttonNode.setAttribute('class', 'buttonAnswer answer');
     buttonNode.onclick = () => { checkAnswer(answer, buttonNode) };
     buttonNode.innerHTML = answer;
-    answersNode.appendChild(buttonNode);
+    questionNodeWrapper.appendChild(buttonNode);
+    answersNode.appendChild(questionNodeWrapper);
   }
 }
 
@@ -123,8 +136,8 @@ function checkAnswer(answer, buttonNode) {
   for (button of document.getElementsByClassName('answer')) {
     button.onclick = null;
   }
-  
-  currentQuestionIndex += 1;        
+
+  currentQuestionIndex += 1;
   setTimeout(newGame, 1000);
 }
 
@@ -135,13 +148,13 @@ function updateScoreDisplay() {
 function updateLivesDisplay() {
   livesNode = document.getElementById('lives');
   clearNode(livesNode);
-  
+
   for (let i = 0; i < lives; i++) {
     const lifeElement = document.createElement('img');
     lifeElement.src = 'assets/heart.png';
     lifeElement.setAttribute('class', 'lives');
     livesNode.appendChild(lifeElement);
-  }  
+  }
 }
 
 function correctAnswer(buttonNode) {
@@ -164,6 +177,6 @@ function playSound(sound) {
   sound.play();
 }
 
-function clearNode(node) { 
+function clearNode(node) {
   while(node.firstChild && node.removeChild(node.firstChild));
 }

@@ -20,14 +20,16 @@ button {
 
 .buttonAnswer {
   background-image: url('../assets/button.jpg');
-  min-width: 40em;
-  min-height: 5em;
+  min-width: 20em;
   max-width: 40em;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   background-size: 100% 100%;
   margin: 0.5em;
-  padding: 1em;
+}
+
+.container {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: unset;
 }
 
 .center {
@@ -42,7 +44,6 @@ button {
 
 .question {
   border: none;
-  margin-bottom: 3em;
 }
 
 #score, #lives {
@@ -50,13 +51,24 @@ button {
   font-size: xx-large;
 }
 
+.soundImage {
+  max-width: 5em;
+  max-height: 5em;
+}
+
 .finalScore {
-  text-align: center;
   color: red;
-  font-size: xxx-large;
+  font-size: x-large;
 }
 
 .lives {
   width: 2em;
   height: 2em;
+}
+
+.disclaimer {
+  color: red;
+  font-size: small;
+  position: 'fixed';
+  bottom: 0;
 }
