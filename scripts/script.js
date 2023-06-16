@@ -144,17 +144,23 @@ function updateLivesDisplay() {
 }
 
 function correctAnswer(buttonNode) {
-  correctAnswerSound.play();
+  playSound(correctAnswerSound);
   score += questionScoreValue;
   buttonNode.style.borderColor = 'green';
   buttonNode.style.borderWidth  = 'thick'
 }
 
 function wrongAnswer(buttonNode) {
-  wrongAnswerSound.play();
+  playSound(wrongAnswerSound);
   lives -= 1;
   buttonNode.style.borderColor = 'red';
   buttonNode.style.borderWidth  = 'thick'
+}
+
+function playSound(sound) {
+  sound.pause();
+  sound.currentTime = 0;
+  sound.play();
 }
 
 function clearNode(node) { 
