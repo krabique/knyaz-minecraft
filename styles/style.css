@@ -8,6 +8,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  background-position: center;
   font-family: 'minecraft';
   text-shadow: 2px 2px 3px black;
   color: red;
