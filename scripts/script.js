@@ -59,6 +59,8 @@ function newGame(initialStart) {
   updateBackground(questionObject);
   addQuestion(questionObject, answersNode);
   addAnswers(questionObject, answersNode);
+
+  if (score % 1000 == 0 && score != 4000) ysdk.adv.showFullscreenAdv();
 }
 
 function updateBackground(questionObject) {
@@ -90,6 +92,7 @@ function endGame(answersNode) {
   finalScoreNode.appendChild(playAgainButtonWrapper);
 
   answersNode.appendChild(finalScoreNode);
+  ysdk.adv.showFullscreenAdv();
 }
 
 function scoreDescription(score) {
