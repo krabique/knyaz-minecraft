@@ -2,6 +2,8 @@ let score = 0;
 let lives = 3;
 let currentQuestionIndex = 0;
 
+window.oncontextmenu = function() { return false; };
+
 const audioMusic = new Audio('assets/sounds/music.mp4');
 const correctAnswerSound = new Audio('assets/sounds/correct_answer.mp3');
 const wrongAnswerSound = new Audio('assets/sounds/wrong_answer.mp3');
