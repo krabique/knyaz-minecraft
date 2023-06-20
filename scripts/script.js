@@ -44,6 +44,7 @@ function music(toggle) {
 
 function newGame(initialStart) {
   if (initialStart) {
+    document.getElementById('sound').style.display = 'block';
     music(true);
   }
 

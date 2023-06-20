@@ -64,6 +64,10 @@ button {
   max-height: 4em;
 }
 
+#sound {
+  display: none;
+}
+
 .finalScore {
   color: red;
   font-size: x-large;
