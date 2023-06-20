@@ -1,6 +1,7 @@
 let score = 0;
 let lives = 3;
 let currentQuestionIndex = 0;
+let attemptNumber = 0;
 
 window.oncontextmenu = function() { return false; };
 
@@ -97,7 +98,13 @@ function endGame(answersNode) {
   finalScoreNode.appendChild(playAgainButtonWrapper);
 
   answersNode.appendChild(finalScoreNode);
-  showAd();
+
+  attemptNumber += 1;
+  if (score >= 2000 && attemptNumber >= 3 && canReview()) {
+    sendFeedback();
+  } else {
+    showAd();
+  }
 }
 
 function scoreDescription(score) {

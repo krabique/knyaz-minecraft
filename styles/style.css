@@ -9,6 +9,10 @@
   user-select: none !important;
 }
 
+#startGameButton {
+  visibility: hidden;
+}
+
 body {
   background-image: url('../assets/backgrounds/default_background.jpg');
   background-repeat: no-repeat;
@@ -18,7 +22,9 @@ body {
   font-family: 'minecraft';
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   color: red;
-  overflow: hidden;
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
 }
 
 button {
@@ -74,8 +80,7 @@ button {
 }
 
 .lives {
-  width: 2em;
-  height: 2em;
+  max-width: 33%;
 }
 
 .disclaimer {
