@@ -40,14 +40,14 @@ body {
 button {
   font-family: 'minecraft';
   font-size: medium;
+  background-image: url('../assets/button.jpg');
+  background-size: 100% 100%;
 }
 
 .buttonAnswer {
-  background-image: url('../assets/button.jpg');
-  min-width: 20em;
-  max-width: 40em;
-  background-size: 100% 100%;
+  min-width: 40vw;
   margin: 0.5em;
+  height: 10vh;
 }
 
 .container {
