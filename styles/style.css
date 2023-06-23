@@ -90,7 +90,8 @@ button {
 }
 
 .lives {
-  max-width: 33%;
+  width: 33%;
+  max-width: 3em;
 }
 
 .disclaimer {
