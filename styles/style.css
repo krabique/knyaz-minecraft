@@ -42,6 +42,7 @@ button {
   font-size: medium;
   background-image: url('../assets/button.jpg');
   background-size: 100% 100%;
+  color: black;
 }
 
 .buttonAnswer {
