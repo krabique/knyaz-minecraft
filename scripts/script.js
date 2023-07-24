@@ -14,8 +14,17 @@ wrongAnswerSound.volume(1.0);
 correctAnswerSound.volume(0.5);
 
 let playMusic = true;
-window.addEventListener("blur", () => music(false));
-window.addEventListener("focus", () => music(playMusic));
+function toggleMusicEventListeners(toggle) {
+  if (toggle) {
+    window.addEventListener("blur", () => music(false));
+    window.addEventListener("focus", () => music(playMusic));
+  } else {
+    window.addEventListener("blur", () => null);
+    window.addEventListener("focus", () => null);
+  }
+}
+toggleMusicEventListeners(true)
+
 
 function userToggleMusic() {
   playMusic = !playMusic;
@@ -34,12 +43,12 @@ function music(toggle) {
     soundNode.appendChild(soundOnIcon);
     audioMusic.play();
   } else {
+    audioMusic.pause();
     soundOffIcon = document.createElement('img');
     soundOffIcon.setAttribute('class', 'soundImage');
     soundOffIcon.src = 'assets/sound_off.png';
     soundOffIcon.onclick = () => { userToggleMusic() };
     soundNode.appendChild(soundOffIcon);
-    audioMusic.pause();
   }
 }
 
@@ -66,6 +75,8 @@ function newGame(initialStart) {
 }
 
 function showAd() {
+  toggleMusicEventListeners(false);
+
   ysdk.adv.showFullscreenAdv({
     callbacks: {
       onOpen: function() {
@@ -75,7 +86,9 @@ function showAd() {
         music(playMusic);
       }
     }
-})
+  })
+
+  toggleMusicEventListeners(true);
 }
 
 function updateBackground(questionObject) {
