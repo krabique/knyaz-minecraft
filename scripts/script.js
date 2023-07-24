@@ -106,7 +106,7 @@ function resetGame() {
 
 function endGame(answersNode) {
   const finalScoreNode = document.createElement('div');
-  finalScoreNode.setAttribute('class', 'finalScore text-center');
+  finalScoreNode.setAttribute('class', 'finalScore text-center center');
   finalScoreNode.innerHTML = `Твой счёт: ${score}. ${scoreDescription(score)}`
 
   const playAgainButtonWrapper = document.createElement('div');
