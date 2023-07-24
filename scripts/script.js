@@ -10,17 +10,16 @@ const correctAnswerSound = new Howl({ src: 'assets/sounds/correct_answer.mp3' })
 const wrongAnswerSound = new Howl({ src: 'assets/sounds/wrong_answer.mp3' });
 audioMusic.loop(true);
 audioMusic.volume(0.3);
+audioMusic.pause();
 wrongAnswerSound.volume(1.0);
 correctAnswerSound.volume(0.5);
 
 let playMusic = true;
 function toggleMusicEventListeners(toggle) {
   if (toggle) {
-    window.addEventListener("blur", () => music(false));
-    window.addEventListener("focus", () => music(playMusic));
+    document.addEventListener("visibilitychange", () => document.hidden ? music(false) : music(playMusic));
   } else {
-    window.addEventListener("blur", () => null);
-    window.addEventListener("focus", () => null);
+    document.addEventListener("visibilitychange", () => null);
   }
 }
 toggleMusicEventListeners(true)
@@ -35,21 +34,21 @@ function music(toggle) {
   soundNode = document.getElementById('sound');
   clearNode(soundNode);
 
+  soundIcon = document.createElement('img');
+  soundIcon.setAttribute('class', 'soundImage');
+  soundIcon.onclick = () => { userToggleMusic() };
+
   if (toggle) {
-    soundOnIcon = document.createElement('img');
-    soundOnIcon.setAttribute('class', 'soundImage');
-    soundOnIcon.src = 'assets/sound_on.png';
-    soundOnIcon.onclick = () => { userToggleMusic() };
-    soundNode.appendChild(soundOnIcon);
+    console.log("HERE !!!!!!!!!!!!")
+    soundIcon.src = 'assets/sound_on.png';
+    audioMusic.pause();
     audioMusic.play();
   } else {
+    soundIcon.src = 'assets/sound_off.png';
     audioMusic.pause();
-    soundOffIcon = document.createElement('img');
-    soundOffIcon.setAttribute('class', 'soundImage');
-    soundOffIcon.src = 'assets/sound_off.png';
-    soundOffIcon.onclick = () => { userToggleMusic() };
-    soundNode.appendChild(soundOffIcon);
   }
+
+  soundNode.appendChild(soundIcon);
 }
 
 function newGame(initialStart) {
