@@ -66,7 +66,16 @@ function newGame(initialStart) {
 }
 
 function showAd() {
-  ysdk.adv.showFullscreenAdv()
+  ysdk.adv.showFullscreenAdv({
+    callbacks: {
+      onOpen: function() {
+        music(false);
+      },
+      onClose: function(wasShown) {
+        music(playMusic);
+      }
+    }
+})
 }
 
 function updateBackground(questionObject) {
@@ -79,6 +88,7 @@ function resetGame() {
   lives = 3;
   currentQuestionIndex = 0;
 
+  showAd();
   newGame();
 }
 
@@ -102,8 +112,6 @@ function endGame(answersNode) {
   attemptNumber += 1;
   if (score >= 2000 && attemptNumber >= 3 && canReview()) {
     sendFeedback();
-  } else {
-    showAd();
   }
 }
 
